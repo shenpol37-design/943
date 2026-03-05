@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Me a Coffee ☕ - Support Our Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF8E7;
+            --coffee: #6F4E37;
+            --warm-orange: #D2691E;
+            --caramel: #C68642;
+            --dark-chocolate: #3E2723;
+            --soft-white: #FFFEF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #FFE4B5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: var(--soft-white);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 20px 60px rgba(62, 39, 35, 0.15),
+                0 0 0 1px rgba(111, 78, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--coffee), var(--warm-orange), var(--caramel));
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Abril Fatface', cursive;
+            color: var(--dark-chocolate);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .header p {
+            color: var(--coffee);
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .donation-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        .option {
+            background: linear-gradient(135deg, var(--cream) 0%, #FFE4B5 100%);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--warm-orange), var(--caramel));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .option:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: var(--warm-orange);
+            box-shadow: 0 15px 35px rgba(210, 105, 30, 0.25);
+        }
+
+        .option:hover::before {
+            opacity: 0.1;
+        }
+
+        .option-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .option:nth-child(1) .option-icon {
+            animation-delay: 0s;
+        }
+
+        .option:nth-child(2) .option-icon {
+            animation-delay: 0.2s;
+        }
+
+        .option-title {
+            font-family: 'Abril Fatface', cursive;
+            color: var(--dark-chocolate);
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .donate-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--coffee) 0%, var(--dark-chocolate) 100%);
+            color: var(--soft-white);
+            border: none;
+            border-radius: 15px;
+            font-family: 'Abril Fatface', cursive;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        .donate-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .donate-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .donate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.4);
+        }
+
+        .donate-button:active {
+            transform: translateY(-1px);
+        }
+
+        .donate-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hearts {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .crypto-section {
+            margin-top: 40px;
+            animation: fadeIn 1s ease-out 1.1s both;
+        }
+
+        .crypto-divider {
+            text-align: center;
+            margin: 30px 0 25px;
+            position: relative;
+        }
+
+        .crypto-divider::before,
+        .crypto-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--coffee), transparent);
+        }
+
+        .crypto-divider::before {
+            left: 0;
+        }
+
+        .crypto-divider::after {
+            right: 0;
+        }
+
+        .crypto-divider span {
+            color: var(--coffee);
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.7;
+            padding: 0 15px;
+            background: var(--soft-white);
+        }
+
+        .ethereum-container {
+            background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .ethereum-container:hover {
+            border-color: var(--caramel);
+            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.15);
+        }
+
+        .litecoin-container {
+            background: linear-gradient(135deg, #F0F0F0 0%, #E0E0E0 100%);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .litecoin-container:hover {
+            border-color: var(--caramel);
+            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.15);
+        }
+
+        .eth-label,
+        .ltc-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-family: 'Abril Fatface', cursive;
+            color: var(--dark-chocolate);
+            font-size: 1.1rem;
+        }
+
+        .eth-label img,
+        .ltc-label img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .eth-address,
+        .ltc-address {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--dark-chocolate);
+            word-break: break-all;
+            border: 2px solid var(--cream);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .eth-address:hover,
+        .ltc-address:hover {
+            border-color: var(--caramel);
+            background: #FFFEF7;
+        }
+
+        .copy-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--caramel) 0%, var(--warm-orange) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(198, 134, 66, 0.3);
+        }
+
+        .copy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(198, 134, 66, 0.4);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 30px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .option-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>Buy Me a Coffee</h1>
+                <p>Help me keep creating amazing content ☕</p>
+            </div>
+
+            <div class="donation-options">
+                <div class="option" onclick="selectOption('cafe')">
+                    <span class="option-icon">☕</span>
+                    <div class="option-title">A Coffee</div>
+                </div>
+            </div>
+
+            <button class="donate-button" onclick="donate()">
+                <span>☕ Buy Me a Coffee Now</span>
+            </button>
+
+            <div class="crypto-section">
+                <div class="crypto-divider">
+                    <span>or donate with crypto</span>
+                </div>
+                <div class="ethereum-container">
+                    <div class="eth-label">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%236F4E37' d='M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z'/%3E%3C/svg%3E" alt="Ethereum">
+                        <span>Ethereum Address</span>
+                    </div>
+                    <div class="eth-address" id="ethAddress">0xc6c7c9426b8db92b94841068d4dEAE02C44766F1</div>
+                    <button class="copy-button" onclick="copyEthAddress()">
+                        <span id="copyTextEth">📋 Copy Address</span>
+                    </button>
+                </div>
+
+                <div class="litecoin-container">
+                    <div class="ltc-label">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%236F4E37' d='M256 512h-96V313.6L64 352v-64l96-38.4V128h64v85.6l96-38.4v64l-96 38.4V448h160v64h-32z'/%3E%3C/svg%3E" alt="Litecoin">
+                        <span>Litecoin Address</span>
+                    </div>
+                    <div class="ltc-address" id="ltcAddress">MMRzaGAfJY9p3rJAdL2hroxZGjrRheS3ru</div>
+                    <button class="copy-button" onclick="copyLtcAddress()">
+                        <span id="copyTextLtc">📋 Copy Address</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hearts">❤️ 🧡 💛</div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAmount = 3.00;
+        let selectedType = 'cafe';
+
+        function selectOption(type) {
+            selectedType = type;
+            selectedAmount = type === 'cafe' ? 3.00 : 10.00;
+            
+            // Visual feedback
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.style.borderColor = 'transparent';
+                opt.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            const selected = event.currentTarget;
+            selected.style.borderColor = 'var(--warm-orange)';
+            selected.style.transform = 'translateY(-8px) scale(1.03)';
+            
+            // Animation
+            selected.style.animation = 'none';
+            setTimeout(() => {
+                selected.style.animation = '';
+            }, 10);
+        }
+
+        function donate() {
+            // Redirigir directamente a PayPal en la misma pestaña
+            window.location.href = 'https://www.paypal.com/donate/?hosted_button_id=F5L7GDXSQQECG';
+        }
+
+        function copyEthAddress() {
+            const address = document.getElementById('ethAddress').textContent;
+            const copyText = document.getElementById('copyTextEth');
+            
+            navigator.clipboard.writeText(address).then(() => {
+                // Cambiar el texto del botón
+                copyText.innerHTML = '✅ Copied!';
+                
+                // Restaurar después de 2 segundos
+                setTimeout(() => {
+                    copyText.innerHTML = '📋 Copy Address';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error copying:', err);
+            });
+        }
+
+        function copyLtcAddress() {
+            const address = document.getElementById('ltcAddress').textContent;
+            const copyText = document.getElementById('copyTextLtc');
+            
+            navigator.clipboard.writeText(address).then(() => {
+                // Cambiar el texto del botón
+                copyText.innerHTML = '✅ Copied!';
+                
+                // Restaurar después de 2 segundos
+                setTimeout(() => {
+                    copyText.innerHTML = '📋 Copy Address';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error copying:', err);
+            });
+        }
+
+        // Pre-seleccionar café por defecto
+        window.addEventListener('load', () => {
+            const cafeOption = document.querySelector('.option:first-child');
+            cafeOption.style.borderColor = 'var(--warm-orange)';
+        });
+    </script>
+</body>
+</html>
